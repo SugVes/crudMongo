@@ -1,6 +1,7 @@
 package com.gusSystem.crud.api.controller;
 
 import com.gusSystem.crud.api.documents.Client;
+import com.gusSystem.crud.api.documents.Telephone;
 import com.gusSystem.crud.api.response.Response;
 import com.gusSystem.crud.api.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,15 @@ public class ClientController {
         return ResponseEntity.ok(new Response<>(clientService.findAll()));
     }
 
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Response<Client>> findById(@PathVariable("id") String id){
+//        return ResponseEntity.ok(new Response<>(clientService.findById(id)));
+//    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<Response<Client>> findById(@PathVariable("id") String id){
-        return ResponseEntity.ok(new Response<>(clientService.findById(id)));
+    public ResponseEntity<Response<List<Telephone>>> findByTelephones(@PathVariable("id") String id){
+        List<Telephone> list = clientService.findByTelephonesClientId(id);
+        return ResponseEntity.ok(new Response<>(list));
     }
 
     @PostMapping("/")

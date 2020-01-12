@@ -6,9 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Embeddable;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.util.Set;
@@ -34,13 +34,9 @@ public class Client {
     @CPF
     private String cpf;
 
+    @DBRef
     private Set<Telephone> telephones;
 
-    @Data
-    @Embeddable
-    public static class Telephone {
-        private String ddd;
-        private String number;
-    }
+
 
 }
