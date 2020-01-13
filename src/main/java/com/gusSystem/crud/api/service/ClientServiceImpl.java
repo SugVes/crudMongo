@@ -45,12 +45,5 @@ public class ClientServiceImpl implements ClientService{
          this.clientRepository.deleteById(id);
     }
 
-    @Override
-    public List<Telephone> findByTelephonesClientId(String id) {
 
-        Query find = new Query( Criteria.where("id").is(id) );  //To find matching documents
-        find.fields().include("telephones");
-
-        return mongoTemplate.find(find, Telephone.class);
-    }
 }
